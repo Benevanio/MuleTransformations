@@ -1,0 +1,94 @@
+{
+  "usuarios": [
+    {
+      "nome": "João",
+      "idade": 25,
+      "sexo": "Masculino",
+      "escolaridade": "Graduação",
+      "semestre": 5,
+      "pais": "Brasil",
+      "ano": 2024
+    },
+    {
+      "nome": "Maria",
+      "idade": 30,
+      "sexo": "Feminino",
+      "escolaridade": "Pós-graduação",
+      "semestre": null,
+      "pais": "Brasil",
+      "ano": 2023
+    },
+    {
+      "nome": "Pedro",
+      "idade": 22,
+      "sexo": "Masculino",
+      "escolaridade": "Graduação",
+      "semestre": 3,
+      "pais": "Brasil",
+      "ano": 2025
+    },
+    {
+      "nome": "Ana",
+      "idade": 27,
+      "sexo": "Feminino",
+      "escolaridade": "Graduação",
+      "semestre": 6,
+      "pais": "Brasil",
+      "ano": 2023
+    },
+    {
+      "nome": "Carlos",
+      "idade": 35,
+      "sexo": "Masculino",
+      "escolaridade": "Mestrado",
+      "semestre": null,
+      "pais": "Brasil",
+      "ano": 2022
+    },
+    {
+      "nome": "Julia",
+      "idade": 29,
+      "sexo": "Feminino",
+      "escolaridade": "Graduação",
+      "semestre": 7,
+      "pais": "Brasil",
+      "ano": 2022
+    },
+    {
+      "nome": "Mateus",
+      "idade": 26,
+      "sexo": "Masculino",
+      "escolaridade": "Graduação",
+      "semestre": 4,
+      "pais": "Brasil",
+      "ano": 2024
+    },
+    {
+      "nome": "Camila",
+      "idade": 31,
+      "sexo": "Feminino",
+      "escolaridade": "Pós-graduação",
+      "semestre": null,
+      "pais": "Brasil",
+      "ano": 2023
+    },
+    {
+      "nome": "Lucas",
+      "idade": 24,
+      "sexo": "Masculino",
+      "escolaridade": "Graduação",
+      "semestre": 5,
+      "pais": "Brasil",
+      "ano": 2024
+    },
+    {
+      "nome": "Mariana",
+      "idade": 28,
+      "sexo": "Feminino",
+      "escolaridade": "Mestrado",
+      "semestre": null,
+      "pais": "Brasil",
+      "ano": 2022
+    }
+  ]
+}

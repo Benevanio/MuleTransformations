@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="usuarios" format="json">
+      <types:shape format="weave" example="examples/usarios.json"><![CDATA[%dw 2.0
+
+type usuarios = {|
+  usuarios: Array<{|    nome: String,     idade: Number {"typeId": "int"},     sexo: String,     escolaridade: String,     semestre: Number {"typeId": "int"},     pais: String,     ano: Number {"typeId": "int"}  |}>
+|} {"example": "{\\\"usuarios\\\":[{\\\"nome\\\":\\\"Jo\u00E3o\\\",\\\"idade\\\":25,\\\"sexo\\\":\\\"Masculino\\\",\\\"escolaridade\\\":\\\"Gradua\u00E7\u00E3o\\\",\\\"semestre\\\":5,\\\"pais\\\":\\\"Brasil\\\",\\\"ano\\\":2024},{\\\"nome\\\":\\\"Maria\\\",\\\"idade\\\":30,\\\"sexo\\\":\\\"Feminino\\\",\\\"escolaridade\\\":\\\"P\u00F3s-gradua\u00E7\u00E3o\\\",\\\"semestre\\\":null,\\\"pais\\\":\\\"Brasil\\\",\\\"ano\\\":2023},{\\\"nome\\\":\\\"Pedro\\\",\\\"idade\\\":22,\\\"sexo\\\":\\\"Masculino\\\",\\\"escolaridade\\\":\\\"Gradua\u00E7\u00E3o\\\",\\\"semestre\\\":3,\\\"pais\\\":\\\"Brasil\\\",\\\"ano\\\":2025},{\\\"nome\\\":\\\"Ana\\\",\\\"idade\\\":27,\\\"sexo\\\":\\\"Feminino\\\",\\\"escolaridade\\\":\\\"Gradua\u00E7\u00E3o\\\",\\\"semestre\\\":6,\\\"pais\\\":\\\"Brasil\\\",\\\"ano\\\":2023},{\\\"nome\\\":\\\"Carlos\\\",\\\"idade\\\":35,\\\"sexo\\\":\\\"Masculino\\\",\\\"escolaridade\\\":\\\"Mestrado\\\",\\\"semestre\\\":null,\\\"pais\\\":\\\"Brasil\\\",\\\"ano\\\":2022},{\\\"nome\\\":\\\"Julia\\\",\\\"idade\\\":29,\\\"sexo\\\":\\\"Feminino\\\",\\\"escolaridade\\\":\\\"Gradua\u00E7\u00E3o\\\",\\\"semestre\\\":7,\\\"pais\\\":\\\"Brasil\\\",\\\"ano\\\":2022},{\\\"nome\\\":\\\"Mateus\\\",\\\"idade\\\":26,\\\"sexo\\\":\\\"Masculino\\\",\\\"escolaridade\\\":\\\"Gradua\u00E7\u00E3o\\\",\\\"semestre\\\":4,\\\"pais\\\":\\\"Brasil\\\",\\\"ano\\\":2024},{\\\"nome\\\":\\\"Camila\\\",\\\"idade\\\":31,\\\"sexo\\\":\\\"Feminino\\\",\\\"escolaridade\\\":\\\"P\u00F3s-gradua\u00E7\u00E3o\\\",\\\"semestre\\\":null,\\\"pais\\\":\\\"Brasil\\\",\\\"ano\\\":2023},{\\\"nome\\\":\\\"Lucas\\\",\\\"idade\\\":24,\\\"sexo\\\":\\\"Masculino\\\",\\\"escolaridade\\\":\\\"Gradua\u00E7\u00E3o\\\",\\\"semestre\\\":5,\\\"pais\\\":\\\"Brasil\\\",\\\"ano\\\":2024},{\\\"nome\\\":\\\"Mariana\\\",\\\"idade\\\":28,\\\"sexo\\\":\\\"Feminino\\\",\\\"escolaridade\\\":\\\"Mestrado\\\",\\\"semestre\\\":null,\\\"pais\\\":\\\"Brasil\\\",\\\"ano\\\":2022}]}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#348f67cb-7650-4495-bd78-2059c8721eb6">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="usuarios"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#d0cb7afa-1c65-4b22-9fc3-2ed6e8a8a3a0">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="usuarios"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

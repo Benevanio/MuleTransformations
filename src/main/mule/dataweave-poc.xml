@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="dataweave-pocFlow" doc:id="5947d21f-556e-4bac-bc20-ba937dfa7a1e" >
+		<ee:transform doc:name="countBY()" doc:id="348f67cb-7650-4495-bd78-2059c8721eb6" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+import * from dw::core::Arrays
+output application/json
+---
+{
+    countBySemestre: payload.usuarios countBy ((item) -> item.semestre != null)
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="divideBy()" doc:id="4d326536-3bcc-40eb-a9cf-1e97d388ef06" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+import * from dw::core::Arrays
+output application/json
+---
+{
+	"DivideBy": [1,2,5,4,5,8,7,18] divideBy 2
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="indexOf" doc:id="f9b655cc-0dde-4944-a2df-09364ab0ee5c" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+import * from dw::core::Arrays
+output application/json
+
+var username = ["benevanio", "Beniel", "Berlanio", "Berlan", "Benevan"]
+---
+indexOf(username, "benevanio")]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="slice" doc:id="b58b1ff5-7101-4199-b351-7fe460207819" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+import * from dw::core::Arrays
+output application/json
+
+var slicehead = [0,1,2,3,4,5,6,7,8,9]
+---
+slice(slicehead, 0,5)]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="sumBy" doc:id="d0cb7afa-1c65-4b22-9fc3-2ed6e8a8a3a0" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+import * from dw::core::Arrays
+output application/json
+---
+{
+    "SumBy": [
+        {"K0": 1},        
+        {"K1": 4},
+        {"K2": 15},
+        {"K3": 8}
+    ] sumBy ((item) -> if (item.K2?) item.K2 else 0)
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
