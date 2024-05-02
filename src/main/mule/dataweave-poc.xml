@@ -4,7 +4,7 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-	<flow name="dataweave-pocFlow" doc:id="5947d21f-556e-4bac-bc20-ba937dfa7a1e" >
+	<flow name="Array" doc:id="5947d21f-556e-4bac-bc20-ba937dfa7a1e" >
 		<ee:transform doc:name="countBY()" doc:id="348f67cb-7650-4495-bd78-2059c8721eb6" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -65,6 +65,26 @@ output application/json
     ] sumBy ((item) -> if (item.K2?) item.K2 else 0)
 }
 ]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="String" doc:id="5f886b77-0e8d-4e5b-b971-0f3e231d3547" >
+		<ee:transform doc:name="String-camelize" doc:id="b30d753b-15e5-4b31-8e63-f34984660e8e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+import * from dw::core::Strings
+output application/json
+---
+{
+	"Camellize": camelize("Mulesoft"),
+	"Capitalize": capitalize("benevanio"),
+	"Upper": upper("Olá Benevanio"),
+	"Lower": lower("Olá Benevanio"),
+	"UpperCase": isUpperCase("OLÁ"),
+	"LowerCase": isLowerCase("olá"),
+	"replace": replaceAll("Benevanio", "Bene", "Mule"),
+	"subString": substring("benevanio",0,9)
+}]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
