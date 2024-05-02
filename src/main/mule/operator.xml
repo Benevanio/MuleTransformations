@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="operatorFlow" doc:id="cb479876-2a47-471f-acaf-aa3b0151394e" >
+		<ee:transform doc:name="--++" doc:id="aab5667a-a61e-4629-a6e7-9bb8990d217e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"concatNumbers": [1,2,3] ++ [4,2,3],
+	"UnconNumbers": [1,2,3] -- [4,3,6],
+	"Payload1": "Hi::" ++ "Bene"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Average" doc:id="d3ac4e24-1110-4bc3-ada6-9764f86b9f05">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"avg1": avg([1,100]),
+	"avg2": avg([2,500,5])
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="distinctBy" doc:id="1f0f50a0-a351-428a-a679-668b899fb77f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var studentDetails ={
+	"name": "Benevanio",
+	"subject":[
+		"math",
+		"physics",
+		"science",
+		"math"		 
+	],
+	"semester": "1st"
+}
+/*[0,2,3,4,5,5,6,7,8,9,10,9,10,2] distinctBy ((item) -> {
+	"RemoveDuplicat": item
+})
+* 
+*/
+---
+studentDetails.subject distinctBy $]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="endsWith" doc:id="1a684d0e-4114-42a6-a99e-f73dd9bb7216" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+["Mulesoft" endsWith  "fts"]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="find" doc:id="98f5ca23-dc56-4f4b-aeb9-c63d0587e101" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+["a", "b", "c", "d"] find("a")]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
