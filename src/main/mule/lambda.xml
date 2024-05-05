@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="Module101" doc:id="4ed46ea4-3a08-4b0a-9c0f-3d228783f57f" >
+		<ee:transform doc:name="firstExpresssion" doc:id="29221ec0-8e32-447b-8fb3-d1621ff1e294" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+
+fun loadEmpDetails(nome, idade, escolaridade) = {
+    "Nome": nome,
+    "idade": idade,
+    "Escolaridade": escolaridade
+}
+
+---
+loadEmpDetails(payload.usuarios.*nome, payload.usuarios.*idade, payload.usuarios.*escolaridade)
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="secondExpression" doc:id="141c7cce-951c-4a1b-8a82-c2a830bf520d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var employeeNames= [
+	"Bene",
+	"Carlos",
+	"Ana",
+	"Paula"
+]
+---
+"employeeNames": employeeNames map ((item) ->{
+	"Nome": upper(item)
+})]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="basicExample" doc:id="13d069cd-58b0-4a49-8123-eadff35a4453">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/dw
+---
+(() ->  5+3)() as Number
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="implementFilterLambda" doc:id="81d01170-f5eb-4ba1-a182-269ea4cfa1bc" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var numbers = (1 to 500)
+---
+filter(numbers, (item, index) -> (item mod 2) == 1)]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="$/$$/$$" doc:id="f70b6769-b439-4356-a7c6-2b519c047a51" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload.usuarios filter (($.idade >= 25 and $.idade <= 30) and $.escolaridade == "Graduação" and $.semestre != null)
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

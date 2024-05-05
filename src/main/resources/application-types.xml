@@ -29,4 +29,31 @@ type usuarios = {|
       </types:input-event>
     </types:processor-declaration>
   </types:enrichment>
+  <types:enrichment select="#29221ec0-8e32-447b-8fb3-d1621ff1e294">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="usuarios"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#6e72b912-c6e9-415b-984f-e76ab2b7ce5c">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="usuarios"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#f70b6769-b439-4356-a7c6-2b519c047a51">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="usuarios"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
 </types:mule>
