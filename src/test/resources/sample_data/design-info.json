@@ -5,6 +5,9 @@
     },
     "f70b6769-b439-4356-a7c6-2b519c047a51": {
       "payload": "sample_data/json.json"
+    },
+    "2c8c3eac-4fa4-473d-a3c3-6d1427c330e1": {
+      "payload": "sample_data/list_json.json"
     }
   }
 }

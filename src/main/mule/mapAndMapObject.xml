@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="mapAndMapObjectFlow" doc:id="5b71c1f5-5a96-440f-8732-c5adb7a98d98" >
+		<ee:transform doc:name="Map01" doc:id="00713b47-5cfa-4343-a72b-5ad2f63bf43a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var StudentArrayList =[
+  {
+    "StudentID": 1,
+    "StudentName": "Benevanio",
+    "StudenLocation": "Brazil"
+  },
+  {
+    "StudentID": 2,
+    "StudentName": "Joana",
+    "StudenLocation": "Portugal"
+  },
+  {
+    "StudentID": 3,
+    "StudentName": "Ahmed",
+    "StudenLocation": "Egypt"
+  },
+  {
+    "StudentID": 4,
+    "StudentName": "Sara",
+    "StudenLocation": "Spain"
+  },
+  {
+    "StudentID": 5,
+    "StudentName": "Liam",
+    "StudenLocation": "United Kingdom"
+  },
+  {
+    "StudentID": 6,
+    "StudentName": "Mariana",
+    "StudenLocation": "Brazil"
+  },
+  {
+    "StudentID": 7,
+    "StudentName": "Pablo",
+    "StudenLocation": "Argentina"
+  },
+  {
+    "StudentID": 8,
+    "StudentName": "Yuki",
+    "StudenLocation": "Japan"
+  },
+  {
+    "StudentID": 9,
+    "StudentName": "Anna",
+    "StudenLocation": "Russia"
+  },
+  {
+    "StudentID": 10,
+    "StudentName": "Chen",
+    "StudenLocation": "China"
+  }
+]
+
+---
+StudentArrayList map{
+	"Students Information":"ID: " ++ $.StudentID ++ " Name: " ++ $.StudentName ++ " Location: " ++ $.StudenLocation
+	
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Map02" doc:id="6e16077d-0bdf-41ea-98ca-9e4d097d67f0" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+
+
+---
+[
+	"Benevanio",
+	"Beniel",
+	"Berlan"
+] map ($$ + 1): $ ++ 1]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="mapObject" doc:id="2c8c3eac-4fa4-473d-a3c3-6d1427c330e1" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+"name": "Maria Silva",
+"email": "maria.silva@example.com",
+"cpf": "123.456.789-00",
+"idade": 30       
+}
+
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

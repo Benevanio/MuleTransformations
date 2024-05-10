@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "name": "Maria Silva",
+      "email": "maria.silva@example.com",
+      "cpf": "123.456.789-00",
+      "idade": 30
+    },
+    {
+      "name": "João Souza",
+      "email": "joao.souza@example.com",
+      "cpf": "987.654.321-00",
+      "idade": 25
+    }
+  ]
+}

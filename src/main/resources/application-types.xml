@@ -10,6 +10,15 @@ type usuarios = {|
 
 ]]></types:shape>
     </types:type>
+    <types:type name="users" format="json">
+      <types:shape format="weave" example="examples/bene.json"><![CDATA[%dw 2.0
+
+type users = {|
+  users: Array<{|    name: String,     email: String,     cpf: String,     idade: Number {"typeId": "int"}  |}>
+|} {"example": "{\\\"users\\\":[{\\\"name\\\":\\\"Maria Silva\\\",\\\"email\\\":\\\"maria.silva@example.com\\\",\\\"cpf\\\":\\\"123.456.789-00\\\",\\\"idade\\\":30},{\\\"name\\\":\\\"Jo\u00E3o Souza\\\",\\\"email\\\":\\\"joao.souza@example.com\\\",\\\"cpf\\\":\\\"987.654.321-00\\\",\\\"idade\\\":25}]}"}
+
+]]></types:shape>
+    </types:type>
   </types:catalog>
   <types:enrichment select="#348f67cb-7650-4495-bd78-2059c8721eb6">
     <types:processor-declaration>
@@ -52,6 +61,15 @@ type usuarios = {|
       <types:input-event>
         <types:message>
           <types:payload type="usuarios"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#2c8c3eac-4fa4-473d-a3c3-6d1427c330e1">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:attributes type="users"/>
         </types:message>
       </types:input-event>
     </types:processor-declaration>
