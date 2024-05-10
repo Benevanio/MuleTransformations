@@ -93,10 +93,17 @@ output application/json
 "email": "maria.silva@example.com",
 "cpf": "123.456.789-00",
 "idade": 30       
+} mapObject  {
+	($$$):{
+		($$): $
+	}
 }
 
 ]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+	</flow>
+	<flow name="FilterFilterObject" doc:id="1ef7979a-fbdb-4167-82e9-a747e221e28a" >
+		<ee:transform doc:name="Transform Message" doc:id="81bf2aa4-a946-4bba-bbd8-1485d2bdbc03" />
 	</flow>
 </mule>
