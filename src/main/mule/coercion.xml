@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="coercionFlow1" doc:id="eb93235c-563b-44ec-8e6c-562479f6a3a1" >
+		<ee:transform doc:name="Coercion" doc:id="78796a38-de8e-4291-b1ff-7fc4ef4d3e52">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"Key1":"312" as Number as String{format:".00"},
+	"Key2": 22.2587 as String {format: "##.###"}
+	
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="75b265c6-36e7-4b16-9bcb-020ddde3e518">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+var readXML = read(
+	"
+	<students>
+  <Student>
+    <StudentID>1</StudentID>
+    <StudentName>Benevanio</StudentName>
+    <StudentLocation>Brazil</StudentLocation>
+	<age>32</age>
+  </Student>
+  <Student>
+    <StudentID>2</StudentID>
+    <StudentName>Young Lee</StudentName>
+    <StudentLocation>China</StudentLocation>
+   <age>25</age>
+  </Student>
+</students>
+
+    ", "application/xml"
+)
+type studencoercion= Number {format: "##.##"}
+---
+studentDetails: readXML.students.*Student map
+key1: $.age as studencoercion]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
