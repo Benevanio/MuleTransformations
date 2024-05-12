@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="datatimeFlow" doc:id="e10cc9aa-e534-4186-8a98-55fbc2592c65" >
+		<ee:transform doc:name="POC1" doc:id="6fb04a4d-8960-4fd8-8558-d93e15f2380f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+//datetime format is case sensitive
+---
+{
+	"date1": |2023-07-01T16:01:25| as String{format:"uuuu"},	
+	"date2": |2023-07-01T16:01:25| as String{format:"kk:mm:ss"},
+	"date3": |2023-07-01T16:01:25| as String{format:"kk:mm:ss a, MMM.dd, uuu"},
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="DateCookBooks" doc:id="d40fd8fd-2e38-4420-82d0-698eeab65565" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
