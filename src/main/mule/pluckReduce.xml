@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="Pluck" doc:id="4b15818a-cf4c-4072-8c9d-eeec7f751d43" >
+		<ee:transform doc:name="POC01" doc:id="8867d25e-4cd9-47af-bd44-b8ed9c30dfe5" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"k1": "Value1",
+	"K2": "Value2",
+	
+}pluck {
+	($$$):{
+		($$):$
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="POC0" doc:id="b9f8899c-6f1e-47c6-866d-67f0077e8458" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var readXML = read (
+"
+<student>
+<name>Bene</name>
+<id>150</id>
+<location>Brazil</location>
+ </student>
+"
+,"application/xml"
+)
+---
+readXML pluck $]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="Reduce" doc:id="42f9511c-3d08-445f-b6ff-40e3951e6aef" >
+		<ee:transform doc:name="POC01" doc:id="e7ddbdd1-14cd-4b36-bfe2-5448f2171e4e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"reduce":[1,2,3,4,5,6,7,8,9] reduce $,
+	"acumulate":[1,2,3,4,5,6,7,8,9] reduce $$,
+	"concatenate":[1,2,3,4,5,6,7,8,9] reduce ($$ ++ $),
+	"addValues":[1,2,3,4,5,6,7,8,9] reduce $$ + $,	
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

@@ -104,6 +104,133 @@ output application/json
 		</ee:transform>
 	</flow>
 	<flow name="FilterFilterObject" doc:id="1ef7979a-fbdb-4167-82e9-a747e221e28a" >
-		<ee:transform doc:name="Transform Message" doc:id="81bf2aa4-a946-4bba-bbd8-1485d2bdbc03" />
+		<ee:transform doc:name="Filter01" doc:id="81bf2aa4-a946-4bba-bbd8-1485d2bdbc03" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var StudentArrayList =[
+  {
+    "StudentID": 1,
+    "StudentName": "Benevanio",
+    "StudenLocation": "Brazil"
+  },
+  {
+    "StudentID": 2,
+    "StudentName": "Joana",
+    "StudenLocation": "Portugal"
+  },
+  {
+    "StudentID": 3,
+    "StudentName": "Ahmed",
+    "StudenLocation": "Egypt"
+  },
+  {
+    "StudentID": 4,
+    "StudentName": "Sara",
+    "StudenLocation": "Spain"
+  },
+  {
+    "StudentID": 5,
+    "StudentName": "Liam",
+    "StudenLocation": "United Kingdom"
+  },
+  {
+    "StudentID": 6,
+    "StudentName": "Mariana",
+    "StudenLocation": "Brazil"
+  },
+  {
+    "StudentID": 7,
+    "StudentName": "Pablo",
+    "StudenLocation": "Argentina"
+  },
+  {
+    "StudentID": 8,
+    "StudentName": "Yuki",
+    "StudenLocation": "Japan"
+  },
+  {
+    "StudentID": 9,
+    "StudentName": "Anna",
+    "StudenLocation": "Russia"
+  },
+  {
+    "StudentID": 10,
+    "StudentName": "Chen",
+    "StudenLocation": "China"
+  }
+]
+
+---
+StudentArrayList filter ($.StudentID == 1 and ($.StudentName startsWith  ("B")))  map{
+	"Students Information":"ID: " ++ $.StudentID ++ " Name: " ++ $.StudentName ++ " Location: " ++ $.StudenLocation
+	
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="FilterObject" doc:id="c27e7e9e-b890-47ac-afd6-322121dad6b8" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var StudentArrayList =[
+  {
+    "StudentID": 1,
+    "StudentName": "Benevanio",
+    "StudenLocation": "Brazil"
+  },
+  {
+    "StudentID": 2,
+    "StudentName": "Joana",
+    "StudenLocation": "Portugal"
+  },
+  {
+    "StudentID": 3,
+    "StudentName": "Ahmed",
+    "StudenLocation": "Egypt"
+  },
+  {
+    "StudentID": 4,
+    "StudentName": "Sara",
+    "StudenLocation": "Spain"
+  },
+  {
+    "StudentID": 5,
+    "StudentName": "Liam",
+    "StudenLocation": "United Kingdom"
+  },
+  {
+    "StudentID": 6,
+    "StudentName": "Mariana",
+    "StudenLocation": "Brazil"
+  },
+  {
+    "StudentID": 7,
+    "StudentName": "Pablo",
+    "StudenLocation": "Argentina"
+  },
+  {
+    "StudentID": 8,
+    "StudentName": "Yuki",
+    "StudenLocation": "Japan"
+  },
+  {
+    "StudentID": 9,
+    "StudentName": "Anna",
+    "StudenLocation": "Russia"
+  },
+  {
+    "StudentID": 10,
+    "StudentName": "Chen",
+    "StudenLocation": "China"
+  }
+]
+
+---
+StudentArrayList[0] filterObject ((value )-> (value startsWith (1)))
+	
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 	</flow>
 </mule>
