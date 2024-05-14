@@ -18,12 +18,68 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<ee:transform doc:name="DateCookBooks" doc:id="d40fd8fd-2e38-4420-82d0-698eeab65565" >
+		<ee:transform doc:name="DataCookBook" doc:id="cb3de491-12b7-41b2-b0b9-689e050b241f" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
-output application/java
+output application/json
 ---
 {
+    "formatos_data": {
+    "date1": |2023-07-01T16:01:25| as String{format:"uuuu-MM-dd'T'HH:mm:ss"},
+    "date2": |2023-07-01T16:01:25| as String{format:"dd/MM/uuuu"},
+    "date3": |2023-07-01T16:01:25| as String{format:"HH:mm:ss"},
+    "date4": |2023-07-01T16:01:25| as String{format:"dd/MM/uuuu HH:mm:ss"},
+    "date5": |2023-07-01T16:01:25| as String{format:"yyyy-MM-dd'T'HH:mm:ss.SSS"} ++ '+00:00', 
+    "date6": |2023-07-01T16:01:25| as String{format:"yyyy-MM-dd'T'HH:mm:ss.SSS"},
+    "date7": |2023-07-01T16:01:25| as String{format:"MMM dd, uuuu HH:mm:ss a"},
+    "date8": |2023-07-01T16:01:25| as String{format:"uuuuMMddHHmmss"},
+    "date9": |2023-07-01T16:01:25| as String{format:"MM/dd/uuuu hh:mm:ss a"},
+    "date10": |2023-07-01T16:01:25| as String{format:"MMM dd, uuuu hh:mm:ss.SSS a"},    
+    "date11": |2023-07-01T16:01:25| as String{format:"yyyy-MM-dd HH:mm:ss"},
+    "date12": |2023-07-01T16:01:25| as String{format:"dd-MM-uuuu"},
+    "date13": |2023-07-01T16:01:25| as String{format:"HH:mm:ss.SSS"}
+    }
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+
+	</flow>
+	<flow name="datatimeFlow1" doc:id="dec87786-7d1f-44ac-afcb-f837e4b98e65" >
+		<ee:transform doc:name="Duration Coercion" doc:id="8a6c7d71-3d48-4ca7-8226-07ad389a12a3" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var learnDT =(
+	|2022-09-09T17:35:12.25| -|2021-08-07T16:15:12.25|
+)
+---
+{
+	"SubtractedValue": learnDT,
+	"ExtractNanoSeconds": learnDT as Number {unit: "nanos"},	
+	"ExtractMiliseconds": learnDT as Number {unit: "milliseconds"},
+	"ExtractSeconds":learnDT as Number {unit: "seconds"},
+	"ExtractHours":learnDT as Number {unit: "hours"},
+	"ExtractDays":learnDT as Number {unit: "days"},
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="perfomeOperations" doc:id="af671f65-c1cc-4095-a0ac-93bdb0aa175d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var noOfDays= 30
+var noOfMonths = 12
+var NoOfYears = 25
+---
+{
+	"SubtractOneDays": |2024-07-09T17:23:21Z| - |P1D|,	
+	"SubtractYear": |2024-07-09T17:23:21Z| - |P1Y|,	
+	"SubtractMonth": |2024-07-09T17:23:21Z| - |P1M|,
+	
+	"aDDOneDay": |2022-07-09T17:23:21Z| + |P1D|,
+	"AddYear": |2024-07-09T17:23:21Z| + |P1Y|,	
+	"AddMonth": |2024-07-09T17:23:21Z| + |P1M|,
+	"CalculateHours": |2024-07-09T17:23:21Z| - |PT1H|
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
